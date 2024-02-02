@@ -9,12 +9,14 @@ public class BotUtils {
         KeyboardButton keyboardButton = new KeyboardButton("Share Phone Number");
         keyboardButton.requestContact(true);
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(keyboardButton);
-        replyKeyboardMarkup.oneTimeKeyboard(true);
+        replyKeyboardMarkup.resizeKeyboard(true);
         return replyKeyboardMarkup;
     }
 
     public static Keyboard generateContinueButton() {
         KeyboardButton keyboardButton = new KeyboardButton("CONTINUE");
-        return new ReplyKeyboardMarkup(keyboardButton);
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(keyboardButton);
+        replyKeyboardMarkup.resizeKeyboard(true);
+        return replyKeyboardMarkup;
     }
 }

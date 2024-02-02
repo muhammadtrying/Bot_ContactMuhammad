@@ -44,20 +44,25 @@ public class MyBot {
             TelegramUser telegramUser = getUser(id, message.chat());
 
             if ( message.text() != null ) {
-                if ( message.text().equals("/start") ) {
+                if ( message.text().equals("/start") )
                     BotService.welcomeMessageAndAskContact(telegramUser);
-                }else if(telegramUser.getState().equals(TelegramState.SENDING_CODE)){
-                    BotService.acceptEmailAndSendCode(telegramUser,message);
-                }else if(telegramUser.getState().equals(TelegramState.ACCEPTING_CODE)){
-                    BotService.acceptCodeAndCheck(telegramUser,message);
-                }else if(telegramUser.getState().equals(TelegramState.CHECKING_CODE)){
-                    BotService.checkCodeAndRegister(telegramUser,message);
-                }
-            } else if ( message.contact() != null ) {
+
+
+                else if ( telegramUser.getState().equals(TelegramState.SENDING_CODE) )
+                    BotService.acceptEmailAndSendCode(telegramUser, message);
+
+
+                else if ( telegramUser.getState().equals(TelegramState.ACCEPTING_CODE) )
+                    BotService.acceptCodeAndCheck(telegramUser, message);
+
+
+                else if ( telegramUser.getState().equals(TelegramState.CHECKING_CODE) )
+                    BotService.checkCodeAndRegister(telegramUser, message);
+
+            } else if ( message.contact() != null )
                 if ( telegramUser.getState().equals(TelegramState.ASKING_EMAIL) ) {
                     BotService.acceptContactAndAskEmail(telegramUser, message);
                 }
-            }
         }
     }
 

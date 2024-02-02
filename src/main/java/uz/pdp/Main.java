@@ -16,8 +16,9 @@ public class Main {
     }
 
     private static void showUsers() {
-        System.out.println("1-to show users");
+        System.out.print("1-to show users");
         Scanner scanner = new Scanner(System.in);
+        System.out.println();
         if ( scanner.nextInt() == 1 ) {
             int i = 1;
             for (TelegramUser user : DB.TELEGRAM_USERS) {

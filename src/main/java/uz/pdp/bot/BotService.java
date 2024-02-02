@@ -20,8 +20,10 @@ public class BotService {
          user.getChatId(),
          "ASSALOMU ALEYKUM! Please share your contact to use the bot!"
         );
+
         sendMessage.replyMarkup(BotUtils.generateButton());
         MyBot.telegramBot.execute(sendMessage);
+
         user.setState(TelegramState.ASKING_EMAIL);
     }
 
@@ -35,8 +37,10 @@ public class BotService {
          telegramUser.getChatId(),
          "Enter email address:"
         );
+
         sendMessage.replyMarkup(new ReplyKeyboardRemove());
         MyBot.telegramBot.execute(sendMessage);
+
         telegramUser.setState(TelegramState.SENDING_CODE);
     }
 
@@ -46,11 +50,14 @@ public class BotService {
         Integer code = generateCode();
         telegramUser.setCode(code);
         String text = "Your code is " + code + ". Don't share it with anyone!";
+
         sendCodeViaEmail(telegramUser.getEmail(), subject, text);
+
         SendMessage sendMessage = new SendMessage(
          telegramUser.getChatId(),
          "Message has been sent!"
         );
+
         sendMessage.replyMarkup(BotUtils.generateContinueButton());
         MyBot.telegramBot.execute(sendMessage);
         telegramUser.setState(TelegramState.ACCEPTING_CODE);
